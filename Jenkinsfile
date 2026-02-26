@@ -6,7 +6,7 @@ pipeline {
                 sh '''
                 ls -la
                 docker rmi -f backend-app || true
-                docker build -t backend-app ./backend
+                docker build -t backend-app .
                 '''
             }
         }
@@ -31,7 +31,7 @@ pipeline {
                   -p 80:80 \
                   nginx
                 
-                docker cp ./nginx/default.conf nginx-lb:/etc/nginx/conf.d/default.conf
+                docker cp ./default.conf nginx-lb:/etc/nginx/conf.d/default.conf
                 docker exec nginx-lb nginx -s reload
                 '''
             }
